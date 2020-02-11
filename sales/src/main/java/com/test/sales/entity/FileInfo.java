@@ -1,5 +1,6 @@
 package com.test.sales.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileInfo
@@ -9,6 +10,13 @@ public class FileInfo
     private List<Seller> sellers;
 
     private List<Sale> sales;
+
+    public FileInfo()
+    {
+        customers = new ArrayList<>();
+        sellers = new ArrayList<>();
+        sales = new ArrayList<>();
+    }
 
     public List<Customer> getCustomers()
     {

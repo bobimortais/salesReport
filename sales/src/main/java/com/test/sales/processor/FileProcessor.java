@@ -36,6 +36,10 @@ public class FileProcessor implements Runnable
         System.out.println("Processing file");
         Path file = Paths.get(EnvironmentConstants.getInstance().getINPUT_FILE_DIR() + processedFile);
         FileInfo fileInfo = InputFileParser.getFileInfo(file);
+        System.out.println("Customers on file: " + fileInfo.getCustomers().size());
+        System.out.println("Sellers on file: " + fileInfo.getSellers().size());
+        System.out.println("Best sale ID: " + 0);
+        System.out.println("Worst seller: " + 0);
         moveProcessedFile(processedFile);
         writeOutputFile(processedFile);
     }
