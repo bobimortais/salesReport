@@ -1,7 +1,9 @@
 package com.test.sales.processor;
 
 import com.test.sales.entity.FileInfo;
+import com.test.sales.entity.Item;
 import com.test.sales.entity.Sale;
+import com.test.sales.entity.Seller;
 import com.test.sales.parser.InputFileParser;
 import com.test.sales.watcher.EnvironmentConstants;
 import java.io.FileWriter;
@@ -58,14 +60,40 @@ public class FileProcessor implements Runnable
         printWriter.println("Quantidade de clientes no arquivo de entrada: " + fileInfo.getCustomers().size());
         printWriter.println("Quantidade de vendedores no arquivo de entrada: " + fileInfo.getSellers().size());
         printWriter.println("ID da venda mais cara:" + getBestSaleId(fileInfo));
-        printWriter.println("ID Pior vendedor:" + getWorstSellerId(fileInfo));
+        printWriter.println("Nome Pior vendedor:" + getWorstSeller(fileInfo));
         printWriter.close();
     }
 
-    private long getWorstSellerId(FileInfo fileInfo)
+    private String getWorstSeller(FileInfo fileInfo)
     {
-        long worstSellerId = 0;
-        return worstSellerId;
+        String worstSeller = fileInfo.getSellers().get(0).getName();
+        double worstSellerSales = 0;
+        int i = 0;
+
+        for(Seller seller : fileInfo.getSellers())
+        {
+            double sellerTotalSalesValue = 0;
+            List<Sale> sales = fileInfo.getSales().stream().filter(sale -> sale.getSalesMan().equals(seller.getName())).collect(Collectors.toList());
+
+            for(Sale sale : sales)
+            {
+                for(Item item : sale.getItems())
+                {
+                    sellerTotalSalesValue += item.getItemPrice() * item.getItemQuantity();
+                }
+            }
+
+            if(i == 0)
+                worstSellerSales = sellerTotalSalesValue;
+
+            if(sellerTotalSalesValue < worstSellerSales)
+            {
+                worstSeller = seller.getName();
+                worstSellerSales = sellerTotalSalesValue;
+            }
+            i++;
+        }
+        return worstSeller;
     }
 
     private long getBestSaleId(FileInfo fileInfo)
