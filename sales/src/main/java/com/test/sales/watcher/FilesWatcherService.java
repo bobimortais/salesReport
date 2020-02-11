@@ -8,12 +8,9 @@ public class FilesWatcherService
 {
     private WatchService watcher;
 
-    private EnvironmentConstants constants;
-
     public FilesWatcherService() throws IOException
     {
-        constants = new EnvironmentConstants();
-        Path path = Paths.get(constants.getINPUT_FILE_DIR());
+        Path path = Paths.get(EnvironmentConstants.getInstance().getINPUT_FILE_DIR());
         watcher = path.getFileSystem().newWatchService();
         path.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
     }
@@ -28,14 +25,11 @@ public class FilesWatcherService
                 key = watcher.take();
                 for (WatchEvent<?> event : key.pollEvents())
                 {
-                    WatchEvent.Kind<?> kind = event.kind();
-                    WatchEvent<Path> ev = (WatchEvent<Path>) event;
-                    Path fileName = ev.context();
-
-                    System.out.println(kind.name() + ": " + fileName);
-
-                    if (kind == StandardWatchEventKinds.ENTRY_CREATE)
+                    if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE)
                     {
+                        WatchEvent<Path> ev = (WatchEvent<Path>) event;
+                        Path fileName = ev.context();
+                        System.out.println("Arquivo criado: " + fileName);
                         FileProcessor processor = new FileProcessor(fileName);
                         processor.run();
                     }

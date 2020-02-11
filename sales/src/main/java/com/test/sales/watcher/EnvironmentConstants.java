@@ -2,26 +2,28 @@ package com.test.sales.watcher;
 
 public final class EnvironmentConstants
 {
-    public final String HOMEPATH;
+    private static EnvironmentConstants instance;
+    private final String HOMEPATH;
 
-    public final String INPUT_FILE_DIR;
+    private final String INPUT_FILE_DIR;
 
-    public final String OUTPUT_FILE_DIR;
+    private final String OUTPUT_FILE_DIR;
 
-    public final String PROCESSED_FILE_DIR;
+    private final String PROCESSED_FILE_DIR;
 
-    public final String OUTPUT_FILE_EXTENSION;
+    private final String OUTPUT_FILE_EXTENSION;
 
-    public final String INPUT_FILE_COLUMN_SEPARATOR;
+    private final String INPUT_FILE_COLUMN_SEPARATOR;
 
-    public final String SELLER_IDENTIFIER;
+    private final String SELLER_IDENTIFIER;
 
-    public final String CUSTOMER_IDENTIFIER;
+    private final String CUSTOMER_IDENTIFIER;
 
-    public final String SALE_IDENTIFIER;
+    private final String SALE_IDENTIFIER;
 
-    public EnvironmentConstants()
+    private EnvironmentConstants()
     {
+        instance = this;
         HOMEPATH = System.getenv("HOMEPATH");
         INPUT_FILE_DIR = HOMEPATH + "/data/in/";
         OUTPUT_FILE_DIR = HOMEPATH + "/data/out/";
@@ -31,6 +33,15 @@ public final class EnvironmentConstants
         SELLER_IDENTIFIER = "001";
         CUSTOMER_IDENTIFIER = "002";
         SALE_IDENTIFIER = "003";
+    }
+
+    public static EnvironmentConstants getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new EnvironmentConstants();
+        }
+        return instance;
     }
 
     public String getHOMEPATH()
