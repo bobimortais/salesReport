@@ -15,6 +15,10 @@ public final class EnvironmentConstants
 
     private final String INPUT_FILE_COLUMN_SEPARATOR;
 
+    private final String ITEM_LIST_SEPARATOR;
+
+    private final String ITEM_FIELD_SEPARATOR;
+
     private final String SELLER_IDENTIFIER;
 
     private final String CUSTOMER_IDENTIFIER;
@@ -30,6 +34,8 @@ public final class EnvironmentConstants
         PROCESSED_FILE_DIR = HOMEPATH + "/data/prd/";
         OUTPUT_FILE_EXTENSION = ".txt";
         INPUT_FILE_COLUMN_SEPARATOR = "ç";
+        ITEM_LIST_SEPARATOR = ",";
+        ITEM_FIELD_SEPARATOR = "-";
         SELLER_IDENTIFIER = "001";
         CUSTOMER_IDENTIFIER = "002";
         SALE_IDENTIFIER = "003";
@@ -72,6 +78,16 @@ public final class EnvironmentConstants
     public String getINPUT_FILE_COLUMN_SEPARATOR()
     {
         return INPUT_FILE_COLUMN_SEPARATOR;
+    }
+
+    public String getITEM_LIST_SEPARATOR()
+    {
+        return ITEM_LIST_SEPARATOR;
+    }
+
+    public String getITEM_FIELD_SEPARATOR()
+    {
+        return ITEM_FIELD_SEPARATOR;
     }
 
     public String getSELLER_IDENTIFIER()
