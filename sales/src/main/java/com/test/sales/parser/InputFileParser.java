@@ -11,6 +11,12 @@ import java.util.stream.Stream;
 
 public class InputFileParser
 {
+    /**
+     * Method to parse information from input file
+     * @param file - file to be parsed
+     * @return FileInfo - class which encapsulates information from input file
+     * @throws IOException
+     */
     public static FileInfo getFileInfo(Path file) throws IOException
     {
         Stream<String> lines = Files.lines(file);
@@ -38,6 +44,11 @@ public class InputFileParser
         return fileInfo;
     }
 
+    /**
+     * Method to parse seller information
+     * @param columns - seller information from input file
+     * @return Seller - seller info
+     */
     private static Seller parseSellerInfo(String[] columns)
     {
         Seller seller = new Seller();
@@ -47,6 +58,11 @@ public class InputFileParser
         return seller;
     }
 
+    /**
+     * Method to parse customer information
+     * @param columns - customer information from input file
+     * @return Customer - customer info
+     */
     private static Customer parseCustomerInfo(String[] columns)
     {
         Customer customer = new Customer();
@@ -56,6 +72,11 @@ public class InputFileParser
         return customer;
     }
 
+    /**
+     * Method to parse sale information
+     * @param columns - sale information from input file
+     * @return Sale - sale info
+     */
     private static Sale parseSaleInfo(String[] columns)
     {
         Sale sale = new Sale();
@@ -65,6 +86,11 @@ public class InputFileParser
         return sale;
     }
 
+    /**
+     * Method to parse item information from a sale
+     * @param itemsInfo - item information from input file for a specific sale
+     * @return List<Item> - list of items of the input sale
+     */
     private static List<Item> parseItemsInfo(String itemsInfo)
     {
         List<Item> items = new ArrayList<>();
@@ -74,9 +100,9 @@ public class InputFileParser
         {
             String[] itemFields = data.split(EnvironmentConstants.getInstance().getITEM_FIELD_SEPARATOR());
             Item item = new Item();
-            item.setItemId(Long.parseLong(itemFields[0].replace("[", "")));
+            item.setItemId(Long.parseLong(itemFields[0].replace(EnvironmentConstants.getInstance().getITEM_LIST_BLOCK_OPENER(), "")));
             item.setItemQuantity(Integer.parseInt(itemFields[1]));
-            item.setItemPrice(Double.parseDouble(itemFields[2].replace("]", "")));
+            item.setItemPrice(Double.parseDouble(itemFields[2].replace(EnvironmentConstants.getInstance().getITEM_LIST_BLOCK_CLOSER(), "")));
             items.add(item);
         }
 

@@ -4,6 +4,7 @@ import com.test.sales.processor.FileProcessor;
 import java.io.IOException;
 import java.nio.file.*;
 
+
 public class FilesWatcherService
 {
     private WatchService watcher;
@@ -15,6 +16,11 @@ public class FilesWatcherService
         path.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
     }
 
+    /**
+     * Method to handler creation events on input folder. Its has a infinite loop
+     * which will check for any creation event on the input folder and will dispatch
+     * a new thread to parse the input file and generate the report to the output folder
+     */
     public void handleEvents()
     {
         WatchKey key;

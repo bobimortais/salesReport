@@ -36,6 +36,11 @@ public class FileProcessor implements Runnable
     {
         this.processedFile = processedFile;
     }
+
+    /**
+     * Method to process input file
+     * @throws IOException
+     */
     private void processFile() throws IOException
     {
         System.out.println("Processing file");
@@ -45,6 +50,11 @@ public class FileProcessor implements Runnable
         writeOutputFile(processedFile, fileInfo);
     }
 
+    /**
+     * Method to move input file already processed to prd folder
+     * @param processedFile - file processed
+     * @throws IOException
+     */
     private void moveProcessedFile(Path processedFile) throws IOException
     {
         String pathToMove = EnvironmentConstants.getInstance().getPROCESSED_FILE_DIR() + processedFile;
@@ -52,6 +62,12 @@ public class FileProcessor implements Runnable
         Files.move(Paths.get(pathToRead), Paths.get(pathToMove));
     }
 
+    /**
+     * Method to write output file to out folder
+     * @param processedFile - file processed
+     * @param fileInfo - information parsed from input file
+     * @throws IOException
+     */
     private void writeOutputFile(Path processedFile, FileInfo fileInfo) throws IOException
     {
         String pathToWrite = EnvironmentConstants.getInstance().getOUTPUT_FILE_DIR();
@@ -64,6 +80,11 @@ public class FileProcessor implements Runnable
         printWriter.close();
     }
 
+    /**
+     * Method to get worst seller contained on input file
+     * @param fileInfo - information parsed from input file
+     * @return String - worst seller name
+     */
     private String getWorstSeller(FileInfo fileInfo)
     {
         String worstSeller = fileInfo.getSellers().get(0).getName();
@@ -96,6 +117,11 @@ public class FileProcessor implements Runnable
         return worstSeller;
     }
 
+    /**
+     * Method to get id of the best sale contained on input file
+     * @param fileInfo - information parsed from input file
+     * @return long - id of the best sale
+     */
     private long getBestSaleId(FileInfo fileInfo)
     {
         List<Sale> sortedList = fileInfo.getSales().stream().sorted((s1, s2) -> s2.getItems().stream().collect(Collectors.summingDouble(item -> item.getItemQuantity() * item.getItemPrice())).compareTo(s1.getItems().stream().collect(Collectors.summingDouble(item -> item.getItemQuantity() * item.getItemPrice())))).collect(Collectors.toList());
