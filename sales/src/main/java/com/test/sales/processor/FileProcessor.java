@@ -1,9 +1,6 @@
 package com.test.sales.processor;
 
 import com.test.sales.entity.FileInfo;
-import com.test.sales.entity.Item;
-import com.test.sales.entity.Sale;
-import com.test.sales.entity.Seller;
 import com.test.sales.parser.InputFileParser;
 import com.test.sales.watcher.EnvironmentConstants;
 import java.io.FileWriter;
@@ -12,8 +9,6 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class FileProcessor implements Runnable
 {
@@ -75,67 +70,8 @@ public class FileProcessor implements Runnable
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.println("Quantidade de clientes no arquivo de entrada: " + fileInfo.getCustomers().size());
         printWriter.println("Quantidade de vendedores no arquivo de entrada: " + fileInfo.getSellers().size());
-        printWriter.println("ID da venda mais cara:" + getBestSaleId(fileInfo));
-        printWriter.println("Nome Pior vendedor:" + getWorstSeller(fileInfo));
+        printWriter.println("ID da venda mais cara:" + fileInfo.getBestSaleId());
+        printWriter.print("Nome Pior vendedor:" + fileInfo.getWorstSeller());
         printWriter.close();
-    }
-
-    /**
-     * Method to get worst seller contained on input file
-     * @param fileInfo - information parsed from input file
-     * @return String - worst seller name
-     */
-    private String getWorstSeller(FileInfo fileInfo)
-    {
-        String worstSeller = fileInfo.getSellers().get(0).getName();
-        double worstSellerSales = 0;
-        int i = 0;
-
-        for(Seller seller : fileInfo.getSellers())
-        {
-            double sellerTotalSalesValue = 0;
-            List<Sale> sales = fileInfo.getSales().stream().filter(sale -> sale.getSalesMan().equals(seller.getName())).collect(Collectors.toList());
-
-            for(Sale sale : sales)
-            {
-                for(Item item : sale.getItems())
-                {
-                    sellerTotalSalesValue += item.getItemPrice() * item.getItemQuantity();
-                }
-            }
-
-            if(i == 0)
-                worstSellerSales = sellerTotalSalesValue;
-
-            if(sellerTotalSalesValue < worstSellerSales)
-            {
-                worstSeller = seller.getName();
-                worstSellerSales = sellerTotalSalesValue;
-            }
-            i++;
-        }
-        return worstSeller;
-    }
-
-    /**
-     * Method to get id of the best sale contained on input file
-     * @param fileInfo - information parsed from input file
-     * @return long - id of the best sale
-     */
-    private long getBestSaleId(FileInfo fileInfo)
-    {
-        return fileInfo.getSales().stream()
-               .sorted(
-                        (s1, s2) -> s2.getItems().stream()
-                                    .collect(Collectors.summingDouble(
-                                              item -> item.getItemQuantity() * item.getItemPrice())
-                                             )
-                                    .compareTo(s1.getItems().stream()
-                                               .collect(Collectors.summingDouble(
-                                                         item -> item.getItemQuantity() * item.getItemPrice())
-                                                        )
-                                               )
-                       )
-               .collect(Collectors.toList()).get(0).getSaleId();
     }
 }
