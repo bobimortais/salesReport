@@ -124,8 +124,18 @@ public class FileProcessor implements Runnable
      */
     private long getBestSaleId(FileInfo fileInfo)
     {
-        List<Sale> sortedList = fileInfo.getSales().stream().sorted((s1, s2) -> s2.getItems().stream().collect(Collectors.summingDouble(item -> item.getItemQuantity() * item.getItemPrice())).compareTo(s1.getItems().stream().collect(Collectors.summingDouble(item -> item.getItemQuantity() * item.getItemPrice())))).collect(Collectors.toList());
-        long bestSaleId = sortedList.get(0).getSaleId();
-        return bestSaleId;
+        return fileInfo.getSales().stream()
+               .sorted(
+                        (s1, s2) -> s2.getItems().stream()
+                                    .collect(Collectors.summingDouble(
+                                              item -> item.getItemQuantity() * item.getItemPrice())
+                                             )
+                                    .compareTo(s1.getItems().stream()
+                                               .collect(Collectors.summingDouble(
+                                                         item -> item.getItemQuantity() * item.getItemPrice())
+                                                        )
+                                               )
+                       )
+               .collect(Collectors.toList()).get(0).getSaleId();
     }
 }
