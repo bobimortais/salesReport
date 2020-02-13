@@ -36,6 +36,8 @@ public final class AppConstants
 
     public static final String UNDEFINED_WORST_SELLER;
 
+    public static final String THREAD_POOL_SIZE;
+
     static
     {
         Properties properties = new Properties();
@@ -68,5 +70,15 @@ public final class AppConstants
         CUSTOMER_IDENTIFIER = properties.getProperty("CUSTOMER_IDENTIFIER");
         SALE_IDENTIFIER = properties.getProperty("SALE_IDENTIFIER");
         UNDEFINED_WORST_SELLER = properties.getProperty("UNDEFINED_WORST_SELLER");
+        THREAD_POOL_SIZE = properties.getProperty("THREAD_POOL_SIZE");
+    }
+
+    /**
+     * Private constructor to avoid the multiple instantiation of the class
+     * on the JVM
+     */
+    private AppConstants()
+    {
+
     }
 }

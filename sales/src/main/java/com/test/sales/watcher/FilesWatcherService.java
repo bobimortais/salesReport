@@ -26,7 +26,7 @@ public class FilesWatcherService
     public void handleEvents()
     {
         WatchKey key;
-        ExecutorService executor = Executors.newFixedThreadPool(20);
+        ExecutorService executor = Executors.newFixedThreadPool(Integer.parseInt(AppConstants.THREAD_POOL_SIZE));
 
         //Keep loop going indefinetly to keep checking input directory for new files
         while (true)
