@@ -2,6 +2,7 @@ package com.test.sales.watcher;
 
 import com.test.sales.app.SalesReportApp;
 import com.test.sales.processor.FileProcessor;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -47,10 +48,10 @@ public class FilesWatcherService
                     //This sleep on thread is necessary to avoid two actions over the same file
                     //Which could cause a lock exception
                     Thread.sleep( 50 );
-                    System.out.println("Arquivo criado: " + fileName);
+                    logger.info("Arquivo criado: " + fileName);
                     FileProcessor processor = new FileProcessor(fileName);
                     executor.execute(processor);
-                    System.out.println("Partindo para próximo arquivo");
+                    logger.info("Partindo para próximo arquivo");
                 }
 
                 if(!key.reset())
@@ -58,7 +59,7 @@ public class FilesWatcherService
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                logger.log(Level.ERROR, "Falha na aplicação", e);
                 return;
             }
         }

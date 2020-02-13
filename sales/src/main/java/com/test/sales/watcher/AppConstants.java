@@ -1,6 +1,7 @@
 package com.test.sales.watcher;
 
 import com.test.sales.app.SalesReportApp;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,11 +55,11 @@ public final class AppConstants
         }
         catch (FileNotFoundException e)
         {
-            e.printStackTrace();
+           logger.log(Level.ERROR, "Falha na aplicação", e);
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "Falha na aplicação", e);
         }
 
         HOMEPATH = System.getenv("HOMEPATH");

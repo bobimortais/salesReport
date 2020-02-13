@@ -4,6 +4,7 @@ import com.test.sales.app.SalesReportApp;
 import com.test.sales.entity.FileInfo;
 import com.test.sales.parser.InputFileParser;
 import com.test.sales.watcher.AppConstants;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,7 +31,7 @@ public class FileProcessor implements Runnable
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "Falha na aplicação", e);
         }
     }
 
@@ -45,12 +46,12 @@ public class FileProcessor implements Runnable
      */
     private void processFile() throws IOException
     {
-        System.out.println("Processing file " + processedFile);
+        logger.info("Processing file " + processedFile);
         Path file = Paths.get(AppConstants.INPUT_FILE_DIR + processedFile);
         FileInfo fileInfo = InputFileParser.getFileInfo(file);
         moveProcessedFile(processedFile);
         writeOutputFile(processedFile, fileInfo);
-        System.out.println("Finalizado processamento do arquivo " + processedFile);
+        logger.info("Finalizado processamento do arquivo " + processedFile);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.test.sales.app;
 
 import com.test.sales.watcher.FilesWatcherService;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +13,7 @@ public class SalesReportApp
 
     public static void main(String[] args)
     {
-        System.out.println("Sales Report App");
+        logger.info("Sales Report App");
         try
         {
             FilesWatcherService watcherService = new FilesWatcherService();
@@ -20,11 +21,11 @@ public class SalesReportApp
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "Falha na aplicação", e);
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "Falha na aplicação", e);
         }
     }
 }
