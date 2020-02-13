@@ -82,7 +82,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
-                        <HOMEPATH></HOMEPATH>
+                        <HOMEPATH>src</HOMEPATH>
                     </environmentVariables>
                 </configuration>
             </plugin>
