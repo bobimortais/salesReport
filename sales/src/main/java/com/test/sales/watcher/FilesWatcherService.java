@@ -36,19 +36,14 @@ public class FilesWatcherService
                 key = watcher.take();
                 for (WatchEvent<?> event : key.pollEvents())
                 {
-                    if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE)
-                    {
-                        Path fileName = ((WatchEvent<Path>) event).context();
-
-                        //This sleep on thread is necessary to avoid two actions over the same file
-                        //Which could cause a lock exception
-                        Thread.sleep( 50 );
-
-                        System.out.println("Arquivo criado: " + fileName);
-                        FileProcessor processor = new FileProcessor(fileName);
-                        executor.execute(processor);
-                        System.out.println("Partindo para próximo arquivo");
-                    }
+                    Path fileName = ((WatchEvent<Path>) event).context();
+                    //This sleep on thread is necessary to avoid two actions over the same file
+                    //Which could cause a lock exception
+                    Thread.sleep( 50 );
+                    System.out.println("Arquivo criado: " + fileName);
+                    FileProcessor processor = new FileProcessor(fileName);
+                    executor.execute(processor);
+                    System.out.println("Partindo para próximo arquivo");
                 }
 
                 if(!key.reset())
