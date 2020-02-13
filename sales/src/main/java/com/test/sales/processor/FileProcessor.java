@@ -7,7 +7,6 @@ import com.test.sales.watcher.AppConstants;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -92,7 +91,7 @@ public class FileProcessor implements Runnable
         printWriter.println("Quantidade de clientes no arquivo de entrada: " + fileInfo.getCustomers().size());
         printWriter.println("Quantidade de vendedores no arquivo de entrada: " + fileInfo.getSellers().size());
         printWriter.println("ID da venda mais cara: " + fileInfo.getBestSaleId());
-        printWriter.print("Nome Pior vendedor :" + fileInfo.getWorstSeller());
+        printWriter.print("Nome Pior vendedor: " + fileInfo.getWorstSeller());
         printWriter.close();
     }
 }
