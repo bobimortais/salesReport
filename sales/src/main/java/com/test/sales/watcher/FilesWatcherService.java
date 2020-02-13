@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 public class FilesWatcherService
 {
+    //WatchService instance responsible to monitor the input folder
     private WatchService watcher;
 
     public FilesWatcherService() throws IOException

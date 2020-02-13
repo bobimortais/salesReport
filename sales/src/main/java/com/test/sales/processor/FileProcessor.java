@@ -60,6 +60,18 @@ public class FileProcessor implements Runnable
     }
 
     /**
+     * Method to move input file which failed on processing to fld folder
+     * @param processedFile - file processed
+     * @throws IOException
+     */
+    private void moveFailedFile(Path processedFile) throws IOException
+    {
+        String pathToMove = AppConstants.FAILED_DIR + processedFile;
+        String pathToRead = AppConstants.INPUT_FILE_DIR + processedFile;
+        Files.move(Paths.get(pathToRead), Paths.get(pathToMove), StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    /**
      * Method to write output file to out folder
      * @param processedFile - file processed
      * @param fileInfo - information parsed from input file
