@@ -1,56 +1,59 @@
 package com.test.sales.watcher;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 public final class AppConstants
 {
-    private static AppConstants instance;
+    public static final String HOMEPATH;
 
-    private final String HOMEPATH;
+    public static final String INPUT_FILE_DIR;
 
-    private final String INPUT_FILE_DIR;
+    public static final String OUTPUT_FILE_DIR;
 
-    private final String OUTPUT_FILE_DIR;
+    public static final String PROCESSED_FILE_DIR;
 
-    private final String PROCESSED_FILE_DIR;
+    public static final String FAILED_DIR;
 
-    private final String FAILED_DIR;
+    public static final String OUTPUT_FILE_EXTENSION;
 
-    private final String OUTPUT_FILE_EXTENSION;
+    public static final String INPUT_FILE_COLUMN_SEPARATOR;
 
-    private final String INPUT_FILE_COLUMN_SEPARATOR;
+    public static final String ITEM_LIST_BLOCK_OPENER;
 
-    private final String ITEM_LIST_BLOCK_OPENER;
+    public static final String ITEM_LIST_BLOCK_CLOSER;
 
-    private final String ITEM_LIST_BLOCK_CLOSER;
+    public static final String ITEM_LIST_SEPARATOR;
 
-    private final String ITEM_LIST_SEPARATOR;
+    public static final String ITEM_FIELD_SEPARATOR;
 
-    private final String ITEM_FIELD_SEPARATOR;
+    public static final String SELLER_IDENTIFIER;
 
-    private final String SELLER_IDENTIFIER;
+    public static final String CUSTOMER_IDENTIFIER;
 
-    private final String CUSTOMER_IDENTIFIER;
+    public static final String SALE_IDENTIFIER;
 
-    private final String SALE_IDENTIFIER;
+    public static final String UNDEFINED_WORST_SELLER;
 
-    private final String INDEFINED_WORST_SELLER;
-
-    private AppConstants()
+    static
     {
         Properties properties = new Properties();
 
         try
         {
-            properties.load(getClass().getClassLoader().getResourceAsStream("app.properties"));
+            properties.load(new FileInputStream("C:\\Users\\robsonz\\git\\salesReport\\sales\\src\\main\\resources/app.properties"));
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
 
-        instance = this;
         HOMEPATH = System.getenv("HOMEPATH");
         INPUT_FILE_DIR = HOMEPATH + properties.getProperty("INPUT_FILE_DIR");
         OUTPUT_FILE_DIR = HOMEPATH + properties.getProperty("OUTPUT_FILE_DIR");
@@ -65,90 +68,6 @@ public final class AppConstants
         SELLER_IDENTIFIER = properties.getProperty("SELLER_IDENTIFIER");
         CUSTOMER_IDENTIFIER = properties.getProperty("CUSTOMER_IDENTIFIER");
         SALE_IDENTIFIER = properties.getProperty("SALE_IDENTIFIER");
-        INDEFINED_WORST_SELLER = properties.getProperty("INDEFINED_WORST_SELLER");
-    }
-
-    public static AppConstants getInstance()
-    {
-        if(instance == null)
-        {
-            instance = new AppConstants();
-        }
-        return instance;
-    }
-
-    public String getHOMEPATH()
-    {
-        return HOMEPATH;
-    }
-
-    public String getINPUT_FILE_DIR()
-    {
-        return INPUT_FILE_DIR;
-    }
-
-    public String getOUTPUT_FILE_DIR()
-    {
-        return OUTPUT_FILE_DIR;
-    }
-
-    public String getPROCESSED_FILE_DIR()
-    {
-        return PROCESSED_FILE_DIR;
-    }
-
-    public String getFAILED_DIR()
-    {
-        return FAILED_DIR;
-    }
-
-    public String getOUTPUT_FILE_EXTENSION()
-    {
-        return OUTPUT_FILE_EXTENSION;
-    }
-
-    public String getINPUT_FILE_COLUMN_SEPARATOR()
-    {
-        return INPUT_FILE_COLUMN_SEPARATOR;
-    }
-
-    public String getITEM_LIST_BLOCK_OPENER()
-    {
-        return ITEM_LIST_BLOCK_OPENER;
-    }
-
-    public String getITEM_LIST_BLOCK_CLOSER()
-    {
-        return ITEM_LIST_BLOCK_CLOSER;
-    }
-
-    public String getITEM_LIST_SEPARATOR()
-    {
-        return ITEM_LIST_SEPARATOR;
-    }
-
-    public String getITEM_FIELD_SEPARATOR()
-    {
-        return ITEM_FIELD_SEPARATOR;
-    }
-
-    public String getSELLER_IDENTIFIER()
-    {
-        return SELLER_IDENTIFIER;
-    }
-
-    public String getCUSTOMER_IDENTIFIER()
-    {
-        return CUSTOMER_IDENTIFIER;
-    }
-
-    public String getSALE_IDENTIFIER()
-    {
-        return SALE_IDENTIFIER;
-    }
-
-    public String getINDEFINED_WORST_SELLER()
-    {
-        return INDEFINED_WORST_SELLER;
+        UNDEFINED_WORST_SELLER = properties.getProperty("UNDEFINED_WORST_SELLER");
     }
 }

@@ -39,7 +39,7 @@ public class FileProcessor implements Runnable
     private void processFile() throws IOException
     {
         System.out.println("Processing file");
-        Path file = Paths.get(AppConstants.getInstance().getINPUT_FILE_DIR() + processedFile);
+        Path file = Paths.get(AppConstants.INPUT_FILE_DIR + processedFile);
         FileInfo fileInfo = InputFileParser.getFileInfo(file);
         moveProcessedFile(processedFile);
         writeOutputFile(processedFile, fileInfo);
@@ -52,8 +52,8 @@ public class FileProcessor implements Runnable
      */
     private void moveProcessedFile(Path processedFile) throws IOException
     {
-        String pathToMove = AppConstants.getInstance().getPROCESSED_FILE_DIR() + processedFile;
-        String pathToRead = AppConstants.getInstance().getINPUT_FILE_DIR() + processedFile;
+        String pathToMove = AppConstants.PROCESSED_FILE_DIR + processedFile;
+        String pathToRead = AppConstants.INPUT_FILE_DIR + processedFile;
         Files.move(Paths.get(pathToRead), Paths.get(pathToMove));
     }
 
@@ -65,8 +65,8 @@ public class FileProcessor implements Runnable
      */
     private void writeOutputFile(Path processedFile, FileInfo fileInfo) throws IOException
     {
-        String pathToWrite = AppConstants.getInstance().getOUTPUT_FILE_DIR();
-        FileWriter fileWriter = new FileWriter(pathToWrite + processedFile + "_output" + AppConstants.getInstance().getOUTPUT_FILE_EXTENSION());
+        String pathToWrite = AppConstants.OUTPUT_FILE_DIR;
+        FileWriter fileWriter = new FileWriter(pathToWrite + processedFile + "_output" + AppConstants.OUTPUT_FILE_EXTENSION);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.println("Quantidade de clientes no arquivo de entrada: " + fileInfo.getCustomers().size());
         printWriter.println("Quantidade de vendedores no arquivo de entrada: " + fileInfo.getSellers().size());

@@ -74,7 +74,7 @@ public class FileInfo
      */
     public String getWorstSeller()
     {
-        String worstSeller = AppConstants.getInstance().getINDEFINED_WORST_SELLER();
+        String worstSeller = AppConstants.UNDEFINED_WORST_SELLER;
         double worstSellerSales = Double.MAX_VALUE;
 
         for(Seller seller : this.getSellers())

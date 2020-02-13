@@ -23,17 +23,17 @@ public class InputFileParser
         FileInfo fileInfo = new FileInfo();
 
         lines.forEach(element -> {
-            String[] columns = element.split(AppConstants.getInstance().getINPUT_FILE_COLUMN_SEPARATOR());
+            String[] columns = element.split(AppConstants.INPUT_FILE_COLUMN_SEPARATOR);
 
-            if(columns[0].equals(AppConstants.getInstance().getSELLER_IDENTIFIER()))
+            if(columns[0].equals(AppConstants.SELLER_IDENTIFIER))
             {
                 fileInfo.getSellers().add(parseSellerInfo(columns));
             }
-            else if(columns[0].equals(AppConstants.getInstance().getCUSTOMER_IDENTIFIER()))
+            else if(columns[0].equals(AppConstants.CUSTOMER_IDENTIFIER))
             {
                 fileInfo.getCustomers().add(parseCustomerInfo(columns));
             }
-            else if(columns[0].equals(AppConstants.getInstance().getSALE_IDENTIFIER()))
+            else if(columns[0].equals(AppConstants.SALE_IDENTIFIER))
             {
                 fileInfo.getSales().add(parseSaleInfo(columns));
             }
@@ -94,15 +94,15 @@ public class InputFileParser
     private static List<Item> parseItemsInfo(String itemsInfo)
     {
         List<Item> items = new ArrayList<>();
-        String[] itemData = itemsInfo.split(AppConstants.getInstance().getITEM_LIST_SEPARATOR());
+        String[] itemData = itemsInfo.split(AppConstants.ITEM_LIST_SEPARATOR);
 
         for(String data : itemData)
         {
-            String[] itemFields = data.split(AppConstants.getInstance().getITEM_FIELD_SEPARATOR());
+            String[] itemFields = data.split(AppConstants.ITEM_FIELD_SEPARATOR);
             Item item = new Item();
-            item.setItemId(Long.parseLong(itemFields[0].replace(AppConstants.getInstance().getITEM_LIST_BLOCK_OPENER(), "")));
+            item.setItemId(Long.parseLong(itemFields[0].replace(AppConstants.ITEM_LIST_BLOCK_OPENER, "")));
             item.setItemQuantity(Integer.parseInt(itemFields[1]));
-            item.setItemPrice(Double.parseDouble(itemFields[2].replace(AppConstants.getInstance().getITEM_LIST_BLOCK_CLOSER(), "")));
+            item.setItemPrice(Double.parseDouble(itemFields[2].replace(AppConstants.ITEM_LIST_BLOCK_CLOSER, "")));
             items.add(item);
         }
 

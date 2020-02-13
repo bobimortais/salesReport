@@ -11,7 +11,7 @@ public class FilesWatcherService
 
     public FilesWatcherService() throws IOException
     {
-        Path path = Paths.get(AppConstants.getInstance().getINPUT_FILE_DIR());
+        Path path = Paths.get(AppConstants.INPUT_FILE_DIR);
         watcher = path.getFileSystem().newWatchService();
         path.register(watcher, StandardWatchEventKinds.ENTRY_CREATE);
     }
