@@ -43,7 +43,7 @@ public final class AppConstants
 
         try
         {
-            properties.load(new FileInputStream("C:\\Users\\robsonz\\git\\salesReport\\sales\\src\\main\\resources/app.properties"));
+            properties.load(AppConstants.class.getClassLoader().getResourceAsStream("app.properties"));
         }
         catch (FileNotFoundException e)
         {
