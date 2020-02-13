@@ -62,5 +62,5 @@ Nome Pior vendedor: Paulo<br/>
   - Verifique os resultados dos testes executados
   
 # Informações adicionais
-	- Informações como diretório de entrada, diretório de saída, e extensão do arquivo de saída podem ser modificadas no arquivo **app.properties** contido na 
+Informações como diretório de entrada, diretório de saída, e extensão do arquivo de saída podem ser modificadas no arquivo **app.properties** contido na 
 pasta **src/main/resources** do projeto
