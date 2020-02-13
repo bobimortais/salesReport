@@ -1,5 +1,7 @@
 package com.test.sales.entity;
 
+import com.test.sales.watcher.AppConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -72,32 +74,23 @@ public class FileInfo
      */
     public String getWorstSeller()
     {
-        String worstSeller = this.getSellers().get(0).getName();
-        double worstSellerSales = 0;
-        int i = 0;
+        String worstSeller = AppConstants.getInstance().getINDEFINED_WORST_SELLER();
+        double worstSellerSales = Double.MAX_VALUE;
 
         for(Seller seller : this.getSellers())
         {
-            double sellerTotalSalesValue = 0;
-            List<Sale> sales = this.getSales().stream().filter(sale -> sale.getSalesMan().equals(seller.getName())).collect(Collectors.toList());
-
-            for(Sale sale : sales)
-            {
-                for(Item item : sale.getItems())
-                {
-                    sellerTotalSalesValue += item.getItemPrice() * item.getItemQuantity();
-                }
-            }
-
-            if(i == 0)
-                worstSellerSales = sellerTotalSalesValue;
+            double sellerTotalSalesValue = this.getSales().stream()
+                                           .filter(sale -> sale.getSalesMan().equals(seller.getName()))
+                                           .collect(Collectors.toList()).stream()
+                                           .mapToDouble(sale -> sale.getItems().stream()
+                                           .mapToDouble(item -> item.getItemQuantity() * item.getItemPrice())
+                                           .sum()).sum();
 
             if(sellerTotalSalesValue < worstSellerSales)
             {
                 worstSeller = seller.getName();
                 worstSellerSales = sellerTotalSalesValue;
             }
-            i++;
         }
         return worstSeller;
     }

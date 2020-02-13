@@ -3,9 +3,9 @@ package com.test.sales.watcher;
 import java.io.IOException;
 import java.util.Properties;
 
-public final class EnvironmentConstants
+public final class AppConstants
 {
-    private static EnvironmentConstants instance;
+    private static AppConstants instance;
 
     private final String HOMEPATH;
 
@@ -35,7 +35,9 @@ public final class EnvironmentConstants
 
     private final String SALE_IDENTIFIER;
 
-    private EnvironmentConstants()
+    private final String INDEFINED_WORST_SELLER;
+
+    private AppConstants()
     {
         Properties properties = new Properties();
 
@@ -63,13 +65,14 @@ public final class EnvironmentConstants
         SELLER_IDENTIFIER = properties.getProperty("SELLER_IDENTIFIER");
         CUSTOMER_IDENTIFIER = properties.getProperty("CUSTOMER_IDENTIFIER");
         SALE_IDENTIFIER = properties.getProperty("SALE_IDENTIFIER");
+        INDEFINED_WORST_SELLER = properties.getProperty("INDEFINED_WORST_SELLER");
     }
 
-    public static EnvironmentConstants getInstance()
+    public static AppConstants getInstance()
     {
         if(instance == null)
         {
-            instance = new EnvironmentConstants();
+            instance = new AppConstants();
         }
         return instance;
     }
@@ -142,5 +145,10 @@ public final class EnvironmentConstants
     public String getSALE_IDENTIFIER()
     {
         return SALE_IDENTIFIER;
+    }
+
+    public String getINDEFINED_WORST_SELLER()
+    {
+        return INDEFINED_WORST_SELLER;
     }
 }
