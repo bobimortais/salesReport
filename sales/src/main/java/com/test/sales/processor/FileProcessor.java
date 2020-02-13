@@ -95,7 +95,9 @@ public class FileProcessor implements Runnable
     private void writeOutputFile(Path processedFile, FileInfo fileInfo) throws IOException
     {
         String pathToWrite = AppConstants.OUTPUT_FILE_DIR;
-        FileWriter fileWriter = new FileWriter(pathToWrite + processedFile + "_output" + AppConstants.OUTPUT_FILE_EXTENSION);
+        StringBuilder builder = new StringBuilder();
+        builder.append(pathToWrite).append(processedFile).append("_output").append(AppConstants.OUTPUT_FILE_EXTENSION);
+        FileWriter fileWriter = new FileWriter(builder.toString());
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.println("Quantidade de clientes no arquivo de entrada: " + fileInfo.getCustomers().size());
         printWriter.println("Quantidade de vendedores no arquivo de entrada: " + fileInfo.getSellers().size());
