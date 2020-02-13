@@ -31,7 +31,7 @@ ordem de execução é então seguida:<br/>
 	- Nome Pior vendedor<br/>
 4. Caso o processamento ocorra com sucesso, o arquivo de entrada é movido para a pasta **HOMEPATH/data/prd**, enquanto um arquivo de saída é gerado
 na pasta **HOMEPATH/data/out** com as informações descritas acima. Caso acha alguma falha durante o processamento do arquivo, o arquivo em questão é 
-movido para a pasta **HOMEPATH/data/fld** e não há geração de arquivo de saída. Os logs de execução podem ser analizados no arquivo **app.log**, contido
+movido para a pasta **HOMEPATH/data/fld** e não há geração de arquivo de saída. Os logs de execução podem ser analizados no arquivo **app_{horário da execução}.log**, contido
 na pasta **logs** gerada no mesmo caminho de execução da aplicação
 
 # Exemplo arquivo de entrada
