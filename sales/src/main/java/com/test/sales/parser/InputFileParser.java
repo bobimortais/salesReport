@@ -21,7 +21,7 @@ public class InputFileParser
      * @return FileInfo - class which encapsulates information from input file
      * @throws IOException
      */
-    public static FileInfo getFileInfo(Path file) throws IOException
+    public static FileInfo getFileInfo(Path file) throws Exception
     {
         Stream<String> lines = Files.lines(file);
         FileInfo fileInfo = new FileInfo();
@@ -43,6 +43,9 @@ public class InputFileParser
             }
         }
         );
+
+        if(fileInfo.getCustomers().isEmpty() || fileInfo.getSellers().isEmpty() || fileInfo.getSales().isEmpty())
+            throw new Exception("Arquivo " + file + " não contém informações válidas");
 
         lines.close();
         return fileInfo;

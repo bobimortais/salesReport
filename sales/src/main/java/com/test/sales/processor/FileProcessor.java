@@ -47,9 +47,18 @@ public class FileProcessor implements Runnable
     {
         logger.info("Processing file " + processedFile);
         Path file = Paths.get(AppConstants.INPUT_FILE_DIR + processedFile);
-        FileInfo fileInfo = InputFileParser.getFileInfo(file);
-        moveProcessedFile(processedFile);
-        writeOutputFile(processedFile, fileInfo);
+
+        try
+        {
+            FileInfo fileInfo = InputFileParser.getFileInfo(file);
+            moveProcessedFile(processedFile);
+            writeOutputFile(processedFile, fileInfo);
+        }
+        catch (Exception e)
+        {
+            logger.error("Falha no processamento do arquivo " + processedFile, e);
+            moveFailedFile(processedFile);
+        }
         logger.info("Finalizado processamento do arquivo " + processedFile);
     }
 

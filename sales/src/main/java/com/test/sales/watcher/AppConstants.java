@@ -55,11 +55,11 @@ public final class AppConstants
         }
         catch (FileNotFoundException e)
         {
-           logger.log(Level.ERROR, "Falha na aplicação", e);
+           logger.log(Level.ERROR, "Falha na leitura de arquivo properties", e);
         }
         catch (IOException e)
         {
-            logger.log(Level.ERROR, "Falha na aplicação", e);
+            logger.log(Level.ERROR, "Falha na leitura de arquivo properties", e);
         }
 
         HOMEPATH = System.getenv("HOMEPATH");
