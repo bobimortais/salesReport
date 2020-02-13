@@ -60,3 +60,7 @@ Nome Pior vendedor: Paulo<br/>
   - Vá para a pasta raiz do projeto
   - Na linha de comando, execute **mvn test**
   - Verifique os resultados dos testes executados
+  
+# Informações adicionais
+	- Informações como diretório de entrada, diretório de saída, e extensão do arquivo de saída podem ser modificadas no arquivo **app.properties** contido na 
+pasta **src/main/resources** do projeto
