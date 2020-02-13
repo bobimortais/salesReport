@@ -42,6 +42,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.OUTPUT_FILE_DIR + "testSalesFile.txt_output.txt")))
                 Files.delete(Paths.get("src/test/resources/out/testSalesFile.txt_output.txt"));
             Files.copy(Paths.get("src/test/resources/inputFiles/testSalesFile.txt"), Paths.get("src/test/resources/in/testSalesFile.txt"), StandardCopyOption.REPLACE_EXISTING);
@@ -61,6 +64,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.FAILED_DIR + "testSalesFile _INVALID.txt")))
                 Files.delete(Paths.get("src/test/resources/fld/testSalesFile _INVALID.txt"));
 
@@ -82,6 +88,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.OUTPUT_FILE_DIR + "testSalesFile.txt_output.txt")))
                 Files.delete(Paths.get("src/test/resources/out/testSalesFile.txt_output.txt"));
             Files.copy(Paths.get("src/test/resources/inputFiles/testSalesFile.txt"), Paths.get("src/test/resources/in/testSalesFile.txt"), StandardCopyOption.REPLACE_EXISTING);
@@ -103,6 +112,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.OUTPUT_FILE_DIR + "testSalesFile.txt_output.txt")))
                 Files.delete(Paths.get("src/test/resources/out/testSalesFile.txt_output.txt"));
             Files.copy(Paths.get("src/test/resources/inputFiles/testSalesFile.txt"), Paths.get("src/test/resources/in/testSalesFile.txt"), StandardCopyOption.REPLACE_EXISTING);
@@ -124,6 +136,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.OUTPUT_FILE_DIR + "testSalesFile.txt_output.txt")))
                 Files.delete(Paths.get("src/test/resources/out/testSalesFile.txt_output.txt"));
             Files.copy(Paths.get("src/test/resources/inputFiles/testSalesFile.txt"), Paths.get("src/test/resources/in/testSalesFile.txt"), StandardCopyOption.REPLACE_EXISTING);
@@ -145,6 +160,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.OUTPUT_FILE_DIR + "testSalesFile.txt_output.txt")))
                 Files.delete(Paths.get("src/test/resources/out/testSalesFile.txt_output.txt"));
             Files.copy(Paths.get("src/test/resources/inputFiles/testSalesFile.txt"), Paths.get("src/test/resources/in/testSalesFile.txt"), StandardCopyOption.REPLACE_EXISTING);
@@ -166,6 +184,9 @@ public class TestFileProcessing
     {
         try
         {
+            if(Files.notExists(Paths.get("src/test/resources/in")))
+                Files.createDirectory(Paths.get("src/test/resources/in"));
+
             if(Files.exists(Paths.get(AppConstants.OUTPUT_FILE_DIR + "testSalesFile2.txt_output.txt")))
                 Files.delete(Paths.get("src/test/resources/out/testSalesFile2.txt_output.txt"));
             Files.copy(Paths.get("src/test/resources/inputFiles/testSalesFile2.txt"), Paths.get("src/test/resources/in/testSalesFile2.txt"), StandardCopyOption.REPLACE_EXISTING);
