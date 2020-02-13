@@ -3,6 +3,8 @@ package com.test.sales.watcher;
 import com.test.sales.processor.FileProcessor;
 import java.io.IOException;
 import java.nio.file.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class FilesWatcherService
@@ -24,6 +26,9 @@ public class FilesWatcherService
     public void handleEvents()
     {
         WatchKey key;
+        ExecutorService executor = Executors.newFixedThreadPool(20);
+
+        //Keep loop going indefinetly to keep checking input directory for new files
         while (true)
         {
             try
@@ -33,26 +38,25 @@ public class FilesWatcherService
                 {
                     if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE)
                     {
-                        WatchEvent<Path> ev = (WatchEvent<Path>) event;
-                        Path fileName = ev.context();
+                        Path fileName = ((WatchEvent<Path>) event).context();
+
+                        //This sleep on thread is necesseary to avoid two actions over the same file
+                        //Which could cause a lock exception
+                        Thread.sleep( 50 );
+
                         System.out.println("Arquivo criado: " + fileName);
                         FileProcessor processor = new FileProcessor(fileName);
-                        processor.run();
+                        executor.execute(processor);
+                        System.out.println("Partindo para próximo arquivo");
                     }
                 }
 
-                boolean valid = key.reset();
-                if (!valid)
-                {
+                if(!key.reset())
                     break;
-                }
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
-            }
-            catch (InterruptedException e)
-            {
                 return;
             }
         }

@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class FileProcessor implements Runnable
 {
@@ -27,7 +28,7 @@ public class FileProcessor implements Runnable
         }
     }
 
-    public FileProcessor(Path processedFile) throws IOException
+    public FileProcessor(Path processedFile)
     {
         this.processedFile = processedFile;
     }
@@ -38,11 +39,12 @@ public class FileProcessor implements Runnable
      */
     private void processFile() throws IOException
     {
-        System.out.println("Processing file");
+        System.out.println("Processing file " + processedFile);
         Path file = Paths.get(AppConstants.INPUT_FILE_DIR + processedFile);
         FileInfo fileInfo = InputFileParser.getFileInfo(file);
         moveProcessedFile(processedFile);
         writeOutputFile(processedFile, fileInfo);
+        System.out.println("Finalizado processamento do arquivo " + processedFile);
     }
 
     /**
@@ -54,7 +56,7 @@ public class FileProcessor implements Runnable
     {
         String pathToMove = AppConstants.PROCESSED_FILE_DIR + processedFile;
         String pathToRead = AppConstants.INPUT_FILE_DIR + processedFile;
-        Files.move(Paths.get(pathToRead), Paths.get(pathToMove));
+        Files.move(Paths.get(pathToRead), Paths.get(pathToMove), StandardCopyOption.REPLACE_EXISTING);
     }
 
     /**
@@ -70,8 +72,8 @@ public class FileProcessor implements Runnable
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.println("Quantidade de clientes no arquivo de entrada: " + fileInfo.getCustomers().size());
         printWriter.println("Quantidade de vendedores no arquivo de entrada: " + fileInfo.getSellers().size());
-        printWriter.println("ID da venda mais cara:" + fileInfo.getBestSaleId());
-        printWriter.print("Nome Pior vendedor:" + fileInfo.getWorstSeller());
+        printWriter.println("ID da venda mais cara: " + fileInfo.getBestSaleId());
+        printWriter.print("Nome Pior vendedor :" + fileInfo.getWorstSeller());
         printWriter.close();
     }
 }
