@@ -40,7 +40,7 @@ public class FilesWatcherService
                     {
                         Path fileName = ((WatchEvent<Path>) event).context();
 
-                        //This sleep on thread is necesseary to avoid two actions over the same file
+                        //This sleep on thread is necessary to avoid two actions over the same file
                         //Which could cause a lock exception
                         Thread.sleep( 50 );
 
