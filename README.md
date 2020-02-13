@@ -21,9 +21,9 @@ da criação de um novo arquivo na pasta citada, uma nova Thread é criada para 
 ordem de execução é então seguida:<br/>
 	1. A aplicação identifica um evento de criação na pasta **HOMEPATH/data/in**. Uma nova Thread então é iniciada para processamento do arquivo<br/>
 	2. O arquivo é então lido e cada linha é convertida para um de três tipos de entidades estabelecidas:<br/>
-		a - Seller (Vendedor)<br/>
-		b - Customer (Cliente)<br/>
-		c - Sale (Venda)<br/>
+	   - Seller (Vendedor)<br/>
+	   - Customer (Cliente)<br/>
+	   - Sale (Venda)<br/>
 	3. Após a conversão do arquivo para as entidades em questão, seguintes informações são extraídas:<br/>
 		- Quantidade de clientes no arquivo de entrada<br/>
 		- Quantidade de vendedores no arquivo de entrada<br/>
