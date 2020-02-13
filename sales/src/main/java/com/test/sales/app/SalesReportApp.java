@@ -16,8 +16,11 @@ public class SalesReportApp
         logger.info("Sales Report App");
         try
         {
-            FilesWatcherService watcherService = new FilesWatcherService();
-            watcherService.handleEvents();
+            if(checkEnvironment())
+            {
+                FilesWatcherService watcherService = new FilesWatcherService();
+                watcherService.handleEvents();
+            }
         }
         catch (IOException e)
         {
@@ -27,5 +30,13 @@ public class SalesReportApp
         {
             logger.log(Level.ERROR, "Falha na aplicação", e);
         }
+    }
+
+    private static boolean checkEnvironment()
+    {
+        boolean isEnvironmentSet = true;
+
+
+        return isEnvironmentSet;
     }
 }
