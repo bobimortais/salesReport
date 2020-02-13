@@ -1,6 +1,10 @@
 package com.test.sales.watcher;
 
+import com.test.sales.app.SalesReportApp;
 import com.test.sales.processor.FileProcessor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.concurrent.ExecutorService;
@@ -11,6 +15,8 @@ public class FilesWatcherService
 {
     //WatchService instance responsible to monitor the input folder
     private WatchService watcher;
+
+    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
 
     public FilesWatcherService() throws IOException
     {

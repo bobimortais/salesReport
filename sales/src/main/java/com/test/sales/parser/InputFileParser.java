@@ -1,7 +1,11 @@
 package com.test.sales.parser;
 
+import com.test.sales.app.SalesReportApp;
 import com.test.sales.entity.*;
 import com.test.sales.watcher.AppConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +15,7 @@ import java.util.stream.Stream;
 
 public class InputFileParser
 {
+    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
     /**
      * Method to parse information from input file
      * @param file - file to be parsed

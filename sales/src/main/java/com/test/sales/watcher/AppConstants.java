@@ -1,11 +1,17 @@
 package com.test.sales.watcher;
 
+import com.test.sales.app.SalesReportApp;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 public final class AppConstants
 {
+    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
+
     public static final String HOMEPATH;
 
     public static final String INPUT_FILE_DIR;

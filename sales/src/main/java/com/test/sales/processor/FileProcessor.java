@@ -1,8 +1,12 @@
 package com.test.sales.processor;
 
+import com.test.sales.app.SalesReportApp;
 import com.test.sales.entity.FileInfo;
 import com.test.sales.parser.InputFileParser;
 import com.test.sales.watcher.AppConstants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +18,8 @@ import java.nio.file.StandardCopyOption;
 public class FileProcessor implements Runnable
 {
     private Path processedFile;
+
+    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
 
     @Override
     public void run()
