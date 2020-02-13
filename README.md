@@ -21,7 +21,7 @@ e empacotamento.
 002ç2345675434544345çJose da SilvaçRural<br/> 
 002ç2345675433444345çEduardo PereiraçRural<br/> 
 003ç10ç[1-10-100,2-30-2.50,3-40-3.10]çPedro<br/> 
-003ç08ç[1-34-10,2-33-1.50,3-40-0.10]çPaul<br/>
+003ç08ç[1-34-10,2-33-1.50,3-40-0.10]çPaulo<br/>
 
 # Exemplo arquivo de saída
 Quantidade de clientes no arquivo de entrada: 2<br/>
