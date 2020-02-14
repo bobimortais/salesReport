@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 public class InputFileParser
 {
-    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
+    private static final Logger logger = LogManager.getLogger(InputFileParser.class);
     /**
      * Method to parse information from input file
      * @param file - file to be parsed

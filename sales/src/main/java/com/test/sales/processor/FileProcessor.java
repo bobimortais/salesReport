@@ -19,7 +19,7 @@ public class FileProcessor implements Runnable
 {
     private Path processedFile;
 
-    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
+    private static final Logger logger = LogManager.getLogger(FileProcessor.class);
 
     @Override
     public void run()

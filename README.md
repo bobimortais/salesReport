@@ -4,7 +4,7 @@ O projeto foi desenvolvido em Java 8, com a utilização do framework JUnit para
 e empacotamento.
 
 # Pré Requisitos técnicos
-  - Java 1.8+
+  - Java 8+
   - Maven 3+
   
 # Pré Requisitos de ambiente
@@ -17,14 +17,14 @@ e empacotamento.
 
 # Fluxo da aplicação
 A aplicação funciona a partir da verificação de eventos de criação de novos arquivos na pasta **HOMEPATH/data/in**. Quando
-da criação de um novo arquivo na pasta citada, uma nova Thread é criada para o processamento do arquivo em questão. A seguinte
+da criação de um novo arquivo na pasta citada, é iniciado o fluxo para o processamento do arquivo em questão. A seguinte
 ordem de execução é então seguida:<br/>
 1. A aplicação identifica um evento de criação na pasta **HOMEPATH/data/in**. Uma nova Thread então é iniciada para processamento do arquivo<br/>
 2. O arquivo é então lido e cada linha é convertida para um de três tipos de entidades estabelecidas:<br/>
    - Seller (Vendedor)<br/>
    - Customer (Cliente)<br/>
    - Sale (Venda)<br/>
-3. Após a conversão do arquivo para as entidades em questão, seguintes informações são extraídas:<br/>
+3. Após a conversão do arquivo para as entidades em questão, as seguintes informações são extraídas:<br/>
 	- Quantidade de clientes no arquivo de entrada<br/>
 	- Quantidade de vendedores no arquivo de entrada<br/>
 	- ID da venda mais cara<br/>
@@ -32,7 +32,7 @@ ordem de execução é então seguida:<br/>
 4. Caso o processamento ocorra com sucesso, o arquivo de entrada é movido para a pasta **HOMEPATH/data/prd**, enquanto um arquivo de saída é gerado
 na pasta **HOMEPATH/data/out** com as informações descritas acima. Caso haja alguma falha durante o processamento do arquivo, o arquivo em questão é 
 movido para a pasta **HOMEPATH/data/fld** e não há geração de arquivo de saída. Os logs de execução podem ser analizados no arquivo **app_{horário da execução}.log**, contido
-na pasta **logs** gerada no mesmo caminho de execução da aplicação
+na pasta **logs** gerada no mesmo caminho de execução da aplicação.
 
 # Exemplo arquivo de entrada
 001ç1234567891234çPedroç50000<br/>

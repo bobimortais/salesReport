@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public final class AppConstants
 {
-    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
+    private static final Logger logger = LogManager.getLogger(AppConstants.class);
 
     public static final String HOMEPATH;
 

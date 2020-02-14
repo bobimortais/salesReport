@@ -16,7 +16,7 @@ public class FilesWatcherService
     //WatchService instance responsible to monitor the input folder
     private WatchService watcher;
 
-    private static final Logger logger = LogManager.getLogger(SalesReportApp.class);
+    private static final Logger logger = LogManager.getLogger(FilesWatcherService.class);
 
     public FilesWatcherService() throws IOException
     {
